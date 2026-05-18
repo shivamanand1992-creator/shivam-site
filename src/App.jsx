@@ -37,10 +37,8 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Progress bar */}
       <div className="fixed top-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 z-50" style={{ width: `${scrollProgress}%` }} />
 
-      {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
         <div className="absolute inset-0">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
@@ -62,15 +60,15 @@ export default function App() {
               </h1>
 
               <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-6 leading-relaxed max-w-lg">
-                AI handles the "how." You focus on solving real problems. Building something meaningful. Creating impact.
+                AI handles the how. You focus on solving real problems. Building something meaningful. Creating impact.
               </p>
 
               <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed max-w-lg">
-                This is the time to build. No more waiting. No more thinking about what's possible. Just build.
+                This is the time to build. No more waiting. No more thinking about what is possible. Just build.
               </p>
 
               <button onClick={scrollToBuild} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105">
-                Let's Build Together →
+                Let Us Build Together →
               </button>
             </div>
 
@@ -96,7 +94,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* MY JOURNEY */}
       <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black text-center mb-8">My Journey</h2>
@@ -108,7 +105,7 @@ export default function App() {
               { year: '2015-2023', title: 'Enterprise Scale', desc: 'Worked with leading companies. Architected large-scale automation systems. Learned how to build and ship at scale. Led teams. Solved hard problems.', icon: '🏢' },
               { year: '2024', title: 'AI Changes Everything', desc: 'Started playing with AI. Claude, GPT-4, open-source tools. Realized the game just changed. No limits now. Speed and creativity multiplied.', icon: '⚡' },
               { year: '2024-Now', title: 'Building Clinoq', desc: 'Solving real healthcare chaos in India. WhatsApp-first clinic management. Live product. Real users. Proof that you can build anything with AI.', icon: '🚀' },
-              { year: 'Always', title: 'Still Learning', desc: 'Every day there\'s something new. New models. New techniques. New possibilities. The loop never ends. And that\'s the beauty of it.', icon: '📚' }
+              { year: 'Always', title: 'Still Learning', desc: 'Every day there is something new. New models. New techniques. New possibilities. The loop never ends. And that is the beauty of it.', icon: '📚' }
             ].map((m, i) => (
               <div key={i} className="group relative">
                 <div className="absolute -left-8 w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-xl border-4 border-black group-hover:scale-110 transition-transform">
@@ -125,10 +122,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* BUILDING NOW */}
       <section ref={buildRef} className="relative py-32 px-6 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What I'm Building Now</h2>
+          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What I am Building Now</h2>
           <p className="text-center text-slate-400 mb-20 text-lg">Real problems. Real solutions. AI-powered.</p>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -136,13 +132,13 @@ export default function App() {
               { 
                 icon: '🏥', 
                 title: 'Clinoq', 
-                desc: 'Solving healthcare chaos in India. Doctors run clinics on paper and WhatsApp. We're changing that. WhatsApp-first. AI-powered. Real impact.',
+                desc: 'Solving healthcare chaos in India. Doctors run clinics on paper and WhatsApp. We are changing that. WhatsApp-first. AI-powered. Real impact.',
                 link: 'https://clinoq.in'
               },
               { 
                 icon: '🤖', 
                 title: 'Playing with AI', 
-                desc: 'Building cool stuff with Claude, GPT-4, open-source models. Experimenting. Testing ideas. Making things work. Pushing what\'s possible.', 
+                desc: 'Building cool stuff with Claude, GPT-4, open-source models. Experimenting. Testing ideas. Making things work. Pushing what is possible.', 
                 link: '#'
               }
             ].map((p, i) => (
@@ -161,7 +157,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* WHY AI MATTERS */}
       <section className="relative py-32 px-6">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black text-center mb-12">Why This Matters Now</h2>
@@ -170,19 +165,19 @@ export default function App() {
             <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4 text-amber-400">The Old Way is Dead</h3>
               <p className="text-lg text-slate-300 leading-relaxed">
-                You used to need 5 years to get good at coding. 10 years to ship products. Teams of people. Massive budgets. That's gone. AI changed the game. One person can now do what teams of 10 used to do.
+                You used to need 5 years to get good at coding. 10 years to ship products. Teams of people. Massive budgets. That is gone. AI changed the game. One person can now do what teams of 10 used to do.
               </p>
             </div>
 
             <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4 text-orange-400">Think WHAT, Not HOW</h3>
               <p className="text-lg text-slate-300 leading-relaxed">
-                You don't need to know HOW anymore. Claude knows HOW. GPT knows HOW. You just need to know WHAT you want to build. What problem are you solving? What does it need to do? AI handles the rest.
+                You do not need to know HOW anymore. Claude knows HOW. GPT knows HOW. You just need to know WHAT you want to build. What problem are you solving? What does it need to do? AI handles the rest.
               </p>
             </div>
 
             <div className="bg-gradient-to-r from-red-500/10 to-pink-500/10 border border-red-500/30 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-4 text-red-400">It's Time to Build</h3>
+              <h3 className="text-2xl font-bold mb-4 text-red-400">It is Time to Build</h3>
               <p className="text-lg text-slate-300 leading-relaxed">
                 No more waiting. No more learning everything before you start. Build NOW. Learn as you go. Ship fast. Iterate. The best time to build was 5 years ago. The second best time is today.
               </p>
@@ -191,17 +186,16 @@ export default function App() {
             <div className="bg-gradient-to-r from-amber-500/10 to-yellow-500/10 border border-amber-500/30 rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4 text-amber-400">Never Stop Learning</h3>
               <p className="text-lg text-slate-300 leading-relaxed">
-                AI moves fast. Models improve every month. New techniques emerge every week. You'll never "finish" learning. And that's okay. That's the excitement. Embrace the endless loop. Stay curious. Keep building.
+                AI moves fast. Models improve every month. New techniques emerge every week. You will never finish learning. And that is okay. That is the excitement. Embrace the endless loop. Stay curious. Keep building.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* AI NEWS */}
       <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What's Happening in AI</h2>
+          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What is Happening in AI</h2>
           <p className="text-center text-slate-400 mb-16 text-lg">Latest updates. Every day something new.</p>
 
           {loading ? (
@@ -229,17 +223,16 @@ export default function App() {
         </div>
       </section>
 
-      {/* FINAL CTA */}
       <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-6xl md:text-7xl font-black mb-8">Stop Waiting. Start Building.</h2>
 
           <p className="text-2xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-            You have everything you need. AI tools are free. Knowledge is online. Problems are everywhere. The only thing missing is you saying "yes, I'll build this."
+            You have everything you need. AI tools are free. Knowledge is online. Problems are everywhere. The only thing missing is you saying yes, I will build this.
           </p>
 
           <div className="bg-slate-800/60 border-2 border-amber-500/40 rounded-3xl p-12 max-w-xl mx-auto mb-12">
-            <p className="text-xl font-bold mb-8">Let's connect. Let's build. Let's make something real.</p>
+            <p className="text-xl font-bold mb-8">Let us connect. Let us build. Let us make something real.</p>
 
             <div className="space-y-4">
               <a href="mailto:shivamanand1992@gmail.com" className="block px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-xl hover:shadow-2xl hover:shadow-amber-500/50 transition-all text-center">
@@ -262,7 +255,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="py-12 px-6 border-t border-slate-800 bg-black text-center text-slate-500 text-sm">
         <p>Build with AI. Think big. Ship fast. Never stop learning.</p>
       </footer>
