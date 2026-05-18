@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, ArrowRight, Mail, Linkedin, ExternalLink, Zap, Star, Lightbulb } from 'lucide-react';
+import React, { useRef, useState, useEffect } from 'react';
+import { ChevronDown, ArrowRight, Mail, Linkedin, ExternalLink, Zap, Lightbulb } from 'lucide-react';
 
 export default function App() {
   const [aiNews, setAiNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const storyRef = useRef(null);
 
   useEffect(() => {
     fetchAINews();
@@ -30,17 +31,17 @@ export default function App() {
     setLoading(false);
   };
 
+  const scrollToStory = () => {
+    storyRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Progress bar */}
-      <div
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 z-50"
-        style={{ width: `${scrollProgress}%` }}
-      />
+      <div className="fixed top-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 z-50" style={{ width: `${scrollProgress}%` }} />
 
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
-        {/* Background blobs */}
         <div className="absolute inset-0">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
           <div className="absolute top-1/3 -left-40 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
@@ -49,8 +50,7 @@ export default function App() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left side - Text */}
-            <div className="flex flex-col justify-center">
+            <div>
               <div className="inline-block mb-6 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-sm font-mono w-fit">
                 ✨ From Nothing to Building
               </div>
@@ -69,12 +69,11 @@ export default function App() {
                 That was me. Five years ago. I was completely wrong about what was possible.
               </p>
 
-              <button className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105 w-fit">
+              <button onClick={scrollToStory} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105">
                 Read My Story →
               </button>
             </div>
 
-            {/* Right side - Photo */}
             <div className="relative hidden md:block">
               <div className="absolute -inset-4 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 rounded-3xl blur-3xl opacity-30" />
               <div className="relative bg-black rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl aspect-square">
@@ -97,17 +96,18 @@ export default function App() {
         </div>
       </section>
 
-      {/* JOURNEY */}
-      <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
+      {/* THE REAL STORY */}
+      <section ref={storyRef} className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-6xl font-black text-center mb-20">The Journey</h2>
+          <h2 className="text-6xl font-black text-center mb-20">The Real Story</h2>
 
           <div className="space-y-12">
             {[
-              { year: '2015', title: 'Barclays', desc: 'Fresh grad. Learned RPA from ground zero.', icon: '📍' },
-              { year: '2018-2021', title: 'Enterprise Scale', desc: 'Led teams. Automated 100+ business processes.', icon: '📈' },
-              { year: '2023', title: 'The Leap', desc: 'Built Clinoq from scratch. Live product. Real users.', icon: '🚀' },
-              { year: '2024+', title: 'Building Future', desc: 'Clinoq scaling. AI-powered workflows. New vision.', icon: '✨' }
+              { year: '2011', title: 'The Beginning', desc: 'Studied at Liverpool John Moores University. Worked part-time jobs at 17. No silver spoon, no connections.', icon: '📍' },
+              { year: '2015', title: 'Started at Barclays', desc: 'First real job. Learned RPA. Started automating business processes. Realized I could build things.', icon: '⚙️' },
+              { year: '2018-2021', title: 'Enterprise Scale', desc: 'Led teams at Genpact. Managed 24 developers at EY. Automated 100+ processes. Learned how to ship at scale.', icon: '📈' },
+              { year: '2023-2024', title: 'The Leap', desc: 'No coding background. Started learning AI. Built Clinoq—a WhatsApp-first clinic management system. Live product. Real users. Real vision.', icon: '🚀' },
+              { year: 'Now', title: 'Building the Future', desc: 'Clinoq is live. Warm leads with doctors. Solving real problems. AI empowered me to move faster. You don\'t need to be a coder to build.', icon: '✨' }
             ].map((m, i) => (
               <div key={i} className="group relative">
                 <div className="absolute -left-8 w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-xl border-4 border-black group-hover:scale-110 transition-transform">
@@ -115,8 +115,8 @@ export default function App() {
                 </div>
                 <div className="ml-12 pl-6 border-l-2 border-amber-500/30 group-hover:border-amber-500 pb-8 transition-all bg-slate-800/30 group-hover:bg-slate-800/60 rounded-lg p-6">
                   <div className="text-amber-400 font-mono text-sm font-bold mb-1">{m.year}</div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-amber-400">{m.title}</h3>
-                  <p className="text-slate-400">{m.desc}</p>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-amber-400 transition-colors">{m.title}</h3>
+                  <p className="text-slate-400 group-hover:text-slate-300 transition-colors">{m.desc}</p>
                 </div>
               </div>
             ))}
@@ -124,28 +124,29 @@ export default function App() {
         </div>
       </section>
 
-      {/* BUILT */}
+      {/* WHAT I'VE BUILT */}
       <section className="relative py-32 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-6xl font-black text-center mb-20">What I've Built</h2>
+          <h2 className="text-6xl font-black text-center mb-8">What I've Built</h2>
+          <p className="text-center text-slate-400 mb-20 text-lg">Not talk. Real products. Real impact.</p>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: '💎', title: 'S.S. Jewellers', desc: 'Real retail business. Real customers.' },
-              { icon: '🏥', title: 'Clinoq', desc: 'Live healthcare AI. Real doctors.' },
-              { icon: '⚙️', title: 'Enterprise RPA', desc: '10+ years. 100+ automations.' }
+              { icon: '💎', title: 'S.S. Jewellers', desc: 'Gold & silver retail. Physical store. Real customers. Real revenue.' },
+              { icon: '🏥', title: 'Clinoq', desc: 'WhatsApp clinic management. Live product. Real doctors. Solving healthcare chaos.' },
+              { icon: '⚙️', title: 'Enterprise RPA', desc: '10+ years automation. 100+ processes. AI agents. Intelligent systems.' }
             ].map((p, i) => (
               <div key={i} className="group bg-slate-800/40 border border-slate-700/50 rounded-2xl p-8 hover:border-amber-500/50 hover:bg-slate-800/70 transition-all">
                 <div className="text-5xl mb-4 group-hover:scale-125 transition-transform">{p.icon}</div>
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-amber-400">{p.title}</h3>
-                <p className="text-slate-400">{p.desc}</p>
+                <h3 className="text-2xl font-bold mb-3 group-hover:text-amber-400 transition-colors">{p.title}</h3>
+                <p className="text-slate-400 group-hover:text-slate-300">{p.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CLINOQ */}
+      {/* CLINOQ VISION */}
       <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/50 to-transparent">
         <div className="max-w-4xl mx-auto">
           <div className="relative">
@@ -156,12 +157,12 @@ export default function App() {
                 Clinoq: The Vision
               </h2>
 
-              <p className="text-xl text-slate-300 mb-6">
+              <p className="text-xl text-slate-300 mb-6 leading-relaxed">
                 Indian clinics run on <span className="text-green-400 font-bold">paper and WhatsApp</span>. Doctors waste 3+ hours daily on admin. Revenue is lost.
               </p>
 
-              <p className="text-xl text-slate-300">
-                Clinoq is <span className="text-green-400 font-bold">infrastructure for Indian healthcare</span>. WhatsApp-first. AI-powered. Zero friction.
+              <p className="text-xl text-slate-300 leading-relaxed">
+                Clinoq is <span className="text-green-400 font-bold">infrastructure for Indian healthcare</span>. WhatsApp-first. AI-powered. Zero friction. We will make it big.
               </p>
 
               <div className="mt-8 pt-8 border-t border-green-500/20">
@@ -174,21 +175,47 @@ export default function App() {
         </div>
       </section>
 
+      {/* WHY I'M SHARING */}
+      <section className="relative py-32 px-6 bg-amber-500/5">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-5xl font-black text-center mb-12">Why I'm Sharing This</h2>
+
+          <div className="space-y-6 max-w-2xl mx-auto text-center">
+            <p className="text-xl text-slate-300 leading-relaxed">
+              <span className="text-amber-400 font-bold">You're reading this because you're like me.</span> You don't know where to start. You think you need to be a coder. You think you need money or connections.
+            </p>
+
+            <p className="text-xl text-slate-300 leading-relaxed">
+              You don't. I came back from the UK earning nothing. Zero coding background. Now I'm building a product that doctors use every day.
+            </p>
+
+            <p className="text-xl text-slate-300 leading-relaxed">
+              <span className="text-amber-400 font-bold">AI changed everything.</span> With Claude, I iterate 10x faster. With open-source, I compete with teams 100x my size.
+            </p>
+
+            <p className="text-xl text-slate-300 leading-relaxed">
+              This site is proof. Proof that you don't need permission. Proof that a middle-class kid from India can build something that matters.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* AI NEWS */}
       <section className="relative py-32 px-6">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-6xl font-black text-center mb-20">What's Happening in AI</h2>
+          <h2 className="text-6xl font-black text-center mb-8">What's Happening in AI</h2>
+          <p className="text-center text-slate-400 mb-16 text-lg">Fresh updates. Every hour. For builders.</p>
 
           {loading ? (
-            <div className="text-center">
+            <div className="text-center py-20">
               <Zap className="w-12 h-12 text-amber-400 animate-spin mx-auto" />
             </div>
           ) : (
             <div className="space-y-4">
-              {aiNews.slice(0, 6).map((n, i) => (
+              {aiNews.slice(0, 8).map((n, i) => (
                 <div key={i} className="p-6 bg-slate-800/50 border border-slate-700/50 rounded-xl hover:border-amber-500/50 hover:bg-slate-800/80 transition-all">
                   <div className="flex justify-between items-start gap-4">
-                    <div>
+                    <div className="flex-1">
                       <span className="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-bold rounded-full mb-2">
                         {n.category}
                       </span>
@@ -209,8 +236,8 @@ export default function App() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-7xl font-black mb-8">You Can Do This Too</h2>
 
-          <p className="text-2xl text-slate-300 mb-6 max-w-2xl mx-auto">
-            I had no connections. No coding background. No "right" credentials. <span className="text-amber-400 font-bold">AI changed everything.</span>
+          <p className="text-2xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            I had no connections. No coding background. <span className="text-amber-400 font-bold">AI changed everything.</span>
           </p>
 
           <div className="bg-slate-800/60 border-2 border-amber-500/40 rounded-3xl p-12 max-w-xl mx-auto">
@@ -238,7 +265,7 @@ export default function App() {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-12 px-6 border-t border-slate-800 bg-black text-center text-slate-500">
+      <footer className="py-12 px-6 border-t border-slate-800 bg-black text-center text-slate-500 text-sm">
         <p>© 2025 Shivam Anand. Built with AI & vision.</p>
       </footer>
     </div>
