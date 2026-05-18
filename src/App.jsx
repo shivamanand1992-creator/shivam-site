@@ -193,6 +193,37 @@ export default function App() {
         </div>
       </section>
 
+      <section className="relative py-32 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What I Work With</h2>
+          <p className="text-center text-slate-400 mb-20 text-lg">Tools, techniques, and problems I help solve</p>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {[
+              { title: 'RPA & Automation', desc: 'Enterprise process automation. Blue Prism. UiPath. Workflow design and optimization at scale.' },
+              { title: 'AI & Machine Learning', desc: 'Building with Claude, GPT-4, and open-source models. Integrating AI into real workflows.' },
+              { title: 'Agentic AI Systems', desc: 'Designing autonomous agents that reason, decide, and act. Multi-step reasoning and planning.' },
+              { title: 'AI Agents & Workflows', desc: 'Custom agents for specific tasks. Intelligent document processing. Context-aware automation.' },
+              { title: 'Conversational AI', desc: 'WhatsApp bots. Customer-facing AI. Multi-channel conversational systems at scale.' },
+              { title: 'Web & Full-Stack', desc: 'React, Node.js, databases. Building modern web products. Shipping fast with clean code.' },
+              { title: 'AI Products', desc: 'From concept to live product. Clinoq is proof. Building AI-first solutions for real market problems.' },
+              { title: 'Consulting & Strategy', desc: 'Advising teams on AI architecture. Solving hard automation problems. Implementation at enterprise scale.' }
+            ].map((skill, i) => (
+              <div key={i} className="group bg-slate-800/40 border border-slate-700/50 rounded-xl p-6 hover:border-amber-500/50 hover:bg-slate-800/70 transition-all">
+                <h3 className="text-lg font-bold mb-2 group-hover:text-amber-400 transition-colors">{skill.title}</h3>
+                <p className="text-slate-400 group-hover:text-slate-300 text-sm leading-relaxed">{skill.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg p-8 text-center max-w-3xl mx-auto">
+            <p className="text-lg text-slate-300 leading-relaxed">
+              Whether you are building an AI-first product, automating enterprise workflows, architecting agentic systems, or exploring what is possible with modern AI - I help translate ideas into working solutions that scale.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What is Happening in AI</h2>
