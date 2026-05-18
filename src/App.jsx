@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { ChevronDown, ArrowRight, Mail, Linkedin, ExternalLink, Zap, Lightbulb, Spark } from 'lucide-react';
+import { ChevronDown, ArrowRight, Mail, Linkedin, Github, ExternalLink, Zap, Code2, Briefcase, Sparkles } from 'lucide-react';
 
 export default function App() {
   const [aiNews, setAiNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const buildRef = useRef(null);
+  const workRef = useRef(null);
 
   useEffect(() => {
     fetchAINews();
@@ -31,14 +31,15 @@ export default function App() {
     setLoading(false);
   };
 
-  const scrollToBuild = () => {
-    buildRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToWork = () => {
+    workRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <div className="fixed top-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 z-50" style={{ width: `${scrollProgress}%` }} />
 
+      {/* HERO / HEADER */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
         <div className="absolute inset-0">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
@@ -49,26 +50,24 @@ export default function App() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div>
-              <div className="inline-block mb-6 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-sm font-mono w-fit">
-                🚀 AI is Here. Now Build.
-              </div>
-
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
-                <span className="block">Think</span>
-                <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-red-500 bg-clip-text text-transparent">WHAT</span>
-                <span className="block">Not How</span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-tight mb-6">
+                Shivam Anand
               </h1>
-
-              <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-6 leading-relaxed max-w-lg">
-                AI handles the how. You focus on solving real problems. Building something meaningful. Creating impact.
+              
+              <p className="text-2xl md:text-3xl text-amber-400 font-bold mb-6">
+                RPA Architect & AI Systems Builder
               </p>
 
-              <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed max-w-lg">
-                This is the time to build. No more waiting. No more thinking about what is possible. Just build.
+              <p className="text-lg md:text-xl text-slate-300 mb-6 leading-relaxed max-w-lg">
+                Building intelligent automation systems. Architecting agentic AI workflows. Turning complex problems into elegant automation solutions.
               </p>
 
-              <button onClick={scrollToBuild} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105">
-                Let Us Build Together →
+              <p className="text-base text-slate-400 mb-8 leading-relaxed max-w-lg">
+                Currently: Leading enterprise RPA + AI projects. Building Clinoq. Playing with agentic systems and intelligent document processing.
+              </p>
+
+              <button onClick={scrollToWork} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105">
+                See My Work →
               </button>
             </div>
 
@@ -81,9 +80,6 @@ export default function App() {
                   className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-amber-400 font-bold text-sm sm:text-base">Builder • Founder • RPA Architect</p>
-                </div>
               </div>
             </div>
           </div>
@@ -94,61 +90,101 @@ export default function App() {
         </div>
       </section>
 
+      {/* WHAT I DO */}
       <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">My Journey</h2>
-          <p className="text-center text-slate-400 mb-20 text-lg">From enterprise automation to building the future with AI</p>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black mb-8">Focus Areas</h2>
+          
+          <div className="space-y-8">
+            <div className="border-l-4 border-amber-500 pl-6">
+              <h3 className="text-2xl font-bold mb-2">Enterprise RPA & Automation</h3>
+              <p className="text-slate-300 text-lg leading-relaxed">
+                10+ years automating complex business processes. Blue Prism, UiPath, workflow architecture. Solving problems at scale across finance, legal, manufacturing, and insurance sectors.
+              </p>
+            </div>
 
-          <div className="space-y-12">
-            {[
-              { year: '2015', title: 'Started Building', desc: 'Began working with automation. Learned how processes work. Built my first solutions. Realized automation could change everything.', icon: '🔧' },
-              { year: '2015-2023', title: 'Enterprise Scale', desc: 'Worked with leading companies. Architected large-scale automation systems. Learned how to build and ship at scale. Led teams. Solved hard problems.', icon: '🏢' },
-              { year: '2024', title: 'AI Changes Everything', desc: 'Started playing with AI. Claude, GPT-4, open-source tools. Realized the game just changed. No limits now. Speed and creativity multiplied.', icon: '⚡' },
-              { year: '2024-Now', title: 'Building Clinoq', desc: 'Solving real healthcare chaos in India. WhatsApp-first clinic management. Live product. Real users. Proof that you can build anything with AI.', icon: '🚀' },
-              { year: 'Always', title: 'Still Learning', desc: 'Every day there is something new. New models. New techniques. New possibilities. The loop never ends. And that is the beauty of it.', icon: '📚' }
-            ].map((m, i) => (
-              <div key={i} className="group relative">
-                <div className="absolute -left-8 w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-xl border-4 border-black group-hover:scale-110 transition-transform">
-                  {m.icon}
-                </div>
-                <div className="ml-12 pl-6 border-l-2 border-amber-500/30 group-hover:border-amber-500 pb-8 transition-all bg-slate-800/30 group-hover:bg-slate-800/60 rounded-lg p-6">
-                  <div className="text-amber-400 font-mono text-sm font-bold mb-1">{m.year}</div>
-                  <h3 className="text-2xl font-bold mb-2 group-hover:text-amber-400 transition-colors">{m.title}</h3>
-                  <p className="text-slate-400 group-hover:text-slate-300 transition-colors text-lg">{m.desc}</p>
-                </div>
-              </div>
-            ))}
+            <div className="border-l-4 border-orange-500 pl-6">
+              <h3 className="text-2xl font-bold mb-2">Agentic AI & Intelligent Workflows</h3>
+              <p className="text-slate-300 text-lg leading-relaxed">
+                Designing autonomous systems that reason and act. Multi-step AI workflows. Intelligent document processing combining vision + LLMs. Building agents that handle edge cases intelligently, not through brittle rules.
+              </p>
+            </div>
+
+            <div className="border-l-4 border-red-500 pl-6">
+              <h3 className="text-2xl font-bold mb-2">AI Product Building</h3>
+              <p className="text-slate-300 text-lg leading-relaxed">
+                From concept to live product. Clinoq is proof: WhatsApp-first clinic management system solving real healthcare chaos in India. Building AI-first solutions that address genuine market problems with practical economics.
+              </p>
+            </div>
+
+            <div className="border-l-4 border-yellow-500 pl-6">
+              <h3 className="text-2xl font-bold mb-2">Systems Architecture & Consulting</h3>
+              <p className="text-slate-300 text-lg leading-relaxed">
+                Advising teams on AI strategy, automation architecture, and implementation. Solving hard problems: document handling at scale, multi-system integration, agentic workflow design. Making complex ideas actionable.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section ref={buildRef} className="relative py-32 px-6 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What I am Building Now</h2>
-          <p className="text-center text-slate-400 mb-20 text-lg">Real problems. Real solutions. AI-powered.</p>
+      {/* WHAT I BUILD */}
+      <section ref={workRef} className="relative py-32 px-6">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black mb-16">What I have Built</h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="space-y-12">
             {[
-              { 
-                icon: '🏥', 
-                title: 'Clinoq', 
-                desc: 'Solving healthcare chaos in India. Doctors run clinics on paper and WhatsApp. We are changing that. WhatsApp-first. AI-powered. Real impact.',
-                link: 'https://clinoq.in'
+              {
+                title: 'Clinoq',
+                subtitle: 'WhatsApp-first Clinic Management',
+                description: 'Live SaaS product solving healthcare chaos in India. Clinics run on paper and WhatsApp. Clinoq automates appointments, patient records, prescriptions, billing — all through WhatsApp. Zero friction for doctors. Real traction with early adopters.',
+                impact: 'Live with paying customers. Warm leads from oncologist and dentist networks.',
+                tech: 'React, Node.js, PostgreSQL, Redis, Meta WhatsApp Cloud API',
+                link: 'https://clinoq.in',
+                icon: '🏥'
               },
-              { 
-                icon: '🤖', 
-                title: 'Playing with AI', 
-                desc: 'Building cool stuff with Claude, GPT-4, open-source models. Experimenting. Testing ideas. Making things work. Pushing what is possible.', 
-                link: '#'
+              {
+                title: 'Enterprise RPA at Scale',
+                subtitle: '100+ Automated Processes',
+                description: 'Architected and led implementation of 100+ end-to-end automation workflows across finance, banking, manufacturing, and legal sectors. Managed cross-functional teams. Solved integration challenges across legacy and modern systems.',
+                impact: '10+ years. Led teams up to 24 engineers. Multi-million dollar automation impact across enterprises.',
+                tech: 'Blue Prism, UiPath, OCR, Document Processing, API Integration, Cloud Platforms',
+                icon: '⚙️'
+              },
+              {
+                title: 'Current Focus: Agentic Systems',
+                subtitle: 'AI Agents + Intelligent Workflows',
+                description: 'Building the next generation of automation. Agentic AI that reasons about problems. Intelligent document processing that understands context. Multi-step workflows that handle edge cases without brittle rules. Combining vision models + LLMs + reasoning engines.',
+                impact: 'Leading Blue Prism project integrating agentic approaches. Implementing at enterprise scale with June 2026 go-live.',
+                tech: 'Claude API, GPT-4V, open-source models, workflow orchestration, vector databases',
+                icon: '🤖'
               }
-            ].map((p, i) => (
-              <div key={i} className="group bg-slate-800/40 border border-slate-700/50 rounded-2xl p-8 hover:border-amber-500/50 hover:bg-slate-800/70 transition-all">
-                <div className="text-5xl mb-4 group-hover:scale-125 transition-transform">{p.icon}</div>
-                <h3 className="text-3xl font-bold mb-3 group-hover:text-amber-400 transition-colors">{p.title}</h3>
-                <p className="text-slate-400 group-hover:text-slate-300 text-lg mb-6 leading-relaxed">{p.desc}</p>
-                {p.link !== '#' && (
-                  <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-amber-400 font-bold hover:text-amber-300">
-                    Explore → <ExternalLink className="w-4 h-4" />
+            ].map((project, i) => (
+              <div key={i} className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-8 hover:border-amber-500/50 hover:bg-slate-800/70 transition-all">
+                <div className="flex items-start gap-4 mb-4">
+                  <span className="text-5xl">{project.icon}</span>
+                  <div>
+                    <h3 className="text-3xl font-bold">{project.title}</h3>
+                    <p className="text-amber-400 font-semibold">{project.subtitle}</p>
+                  </div>
+                </div>
+                
+                <p className="text-slate-300 text-lg mb-6 leading-relaxed">{project.description}</p>
+                
+                <div className="grid md:grid-cols-2 gap-6 mb-6 py-6 border-t border-slate-700/50">
+                  <div>
+                    <p className="text-slate-400 text-sm font-mono mb-1">IMPACT</p>
+                    <p className="text-slate-300">{project.impact}</p>
+                  </div>
+                  <div>
+                    <p className="text-slate-400 text-sm font-mono mb-1">TECH STACK</p>
+                    <p className="text-slate-300 text-sm">{project.tech}</p>
+                  </div>
+                </div>
+
+                {project.link && project.link !== '#' && (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-amber-400 font-bold hover:text-amber-300">
+                    Visit → <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
               </div>
@@ -157,77 +193,74 @@ export default function App() {
         </div>
       </section>
 
-      <section className="relative py-32 px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-12">Why This Matters Now</h2>
-
-          <div className="space-y-8">
-            <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-4 text-amber-400">The Old Way is Dead</h3>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                You used to need 5 years to get good at coding. 10 years to ship products. Teams of people. Massive budgets. That is gone. AI changed the game. One person can now do what teams of 10 used to do.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-4 text-orange-400">Think WHAT, Not HOW</h3>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                You do not need to know HOW anymore. Claude knows HOW. GPT knows HOW. You just need to know WHAT you want to build. What problem are you solving? What does it need to do? AI handles the rest.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-r from-red-500/10 to-pink-500/10 border border-red-500/30 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-4 text-red-400">It is Time to Build</h3>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                No more waiting. No more learning everything before you start. Build NOW. Learn as you go. Ship fast. Iterate. The best time to build was 5 years ago. The second best time is today.
-              </p>
-            </div>
-
-            <div className="bg-gradient-to-r from-amber-500/10 to-yellow-500/10 border border-amber-500/30 rounded-lg p-8">
-              <h3 className="text-2xl font-bold mb-4 text-amber-400">Never Stop Learning</h3>
-              <p className="text-lg text-slate-300 leading-relaxed">
-                AI moves fast. Models improve every month. New techniques emerge every week. You will never finish learning. And that is okay. That is the excitement. Embrace the endless loop. Stay curious. Keep building.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative py-32 px-6">
+      {/* EXPERTISE GRID */}
+      <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What I Work With</h2>
-          <p className="text-center text-slate-400 mb-20 text-lg">Tools, techniques, and problems I help solve</p>
+          <h2 className="text-4xl md:text-5xl font-black mb-16">Skills & Tools</h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
-              { title: 'RPA & Automation', desc: 'Enterprise process automation. Blue Prism. UiPath. Workflow design and optimization at scale.' },
-              { title: 'AI & Machine Learning', desc: 'Building with Claude, GPT-4, and open-source models. Integrating AI into real workflows.' },
-              { title: 'Agentic AI Systems', desc: 'Designing autonomous agents that reason, decide, and act. Multi-step reasoning and planning.' },
-              { title: 'AI Agents & Workflows', desc: 'Custom agents for specific tasks. Intelligent document processing. Context-aware automation.' },
-              { title: 'Conversational AI', desc: 'WhatsApp bots. Customer-facing AI. Multi-channel conversational systems at scale.' },
-              { title: 'Web & Full-Stack', desc: 'React, Node.js, databases. Building modern web products. Shipping fast with clean code.' },
-              { title: 'AI Products', desc: 'From concept to live product. Clinoq is proof. Building AI-first solutions for real market problems.' },
-              { title: 'Consulting & Strategy', desc: 'Advising teams on AI architecture. Solving hard automation problems. Implementation at enterprise scale.' }
+              { label: 'Automation Platforms', items: 'Blue Prism, UiPath, n8n, Make' },
+              { label: 'AI & LLMs', items: 'Claude, GPT-4, open-source models' },
+              { label: 'Backend', items: 'Node.js, Python, Express, databases' },
+              { label: 'Frontend', items: 'React, Tailwind, modern web stack' },
+              { label: 'Document Processing', items: 'OCR, vision models, PDF extraction' },
+              { label: 'Infrastructure', items: 'Cloud platforms, APIs, integrations' },
+              { label: 'Agentic Systems', items: 'Multi-step reasoning, autonomous workflows' },
+              { label: 'Databases', items: 'PostgreSQL, Redis, vector DBs' },
+              { label: 'Methodologies', items: 'Architecture, systems design, consulting' }
             ].map((skill, i) => (
-              <div key={i} className="group bg-slate-800/40 border border-slate-700/50 rounded-xl p-6 hover:border-amber-500/50 hover:bg-slate-800/70 transition-all">
-                <h3 className="text-lg font-bold mb-2 group-hover:text-amber-400 transition-colors">{skill.title}</h3>
-                <p className="text-slate-400 group-hover:text-slate-300 text-sm leading-relaxed">{skill.desc}</p>
+              <div key={i} className="bg-slate-800/40 border border-slate-700/50 rounded-lg p-6">
+                <p className="text-amber-400 font-bold text-sm mb-2">{skill.label}</p>
+                <p className="text-slate-300">{skill.items}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg p-8 text-center max-w-3xl mx-auto">
-            <p className="text-lg text-slate-300 leading-relaxed">
-              Whether you are building an AI-first product, automating enterprise workflows, architecting agentic systems, or exploring what is possible with modern AI - I help translate ideas into working solutions that scale.
-            </p>
+      {/* NOW PAGE */}
+      <section className="relative py-32 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black mb-8">/Now</h2>
+          <p className="text-slate-400 text-sm mb-8 font-mono">What I am focused on right now</p>
+
+          <div className="space-y-6">
+            <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-lg p-8">
+              <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                <Briefcase className="w-6 h-6 text-amber-400" />
+                Enterprise Automation Project
+              </h3>
+              <p className="text-slate-300 mb-2">Leading a major Blue Prism + AI integration project for legal services automation. Go-live: June 2026. Architecting workflows that combine traditional RPA with agentic AI for intelligent document processing and decision-making.</p>
+              <p className="text-slate-400 text-sm">Focus: Agentic workflows at enterprise scale. Handling edge cases intelligently. Multi-system integration.</p>
+            </div>
+
+            <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-8">
+              <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                <Sparkles className="w-6 h-6 text-orange-400" />
+                Clinoq Growth
+              </h3>
+              <p className="text-slate-300 mb-2">Early customers on Clinoq. Warm leads from oncologist and dentist networks. Building out features based on real user feedback. Proving the model works in healthcare before scaling.</p>
+              <p className="text-slate-400 text-sm">Focus: Product-market fit. Real customer problems. Healthcare SaaS playbook.</p>
+            </div>
+
+            <div className="bg-gradient-to-r from-red-500/10 to-pink-500/10 border border-red-500/30 rounded-lg p-8">
+              <h3 className="text-2xl font-bold mb-3 flex items-center gap-2">
+                <Zap className="w-6 h-6 text-red-400" />
+                Learning & Building with AI
+              </h3>
+              <p className="text-slate-300 mb-2">Exploring what is possible with modern AI. Building small tools and systems to understand agentic patterns. Experimenting with vision models, LLMs, and reasoning systems. Never stopping learning.</p>
+              <p className="text-slate-400 text-sm">Focus: Hands-on with latest models. Understanding the edge cases and tradeoffs. Building intuition.</p>
+            </div>
           </div>
         </div>
       </section>
 
+      {/* RECENT WORK & UPDATES */}
       <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-slate-900/30 to-transparent">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-8">What is Happening in AI</h2>
-          <p className="text-center text-slate-400 mb-16 text-lg">Latest updates. Every day something new.</p>
+          <h2 className="text-4xl md:text-5xl font-black mb-8">Latest in AI</h2>
+          <p className="text-slate-400 mb-16">Following the trends that matter for building real systems</p>
 
           {loading ? (
             <div className="text-center py-20">
@@ -235,7 +268,7 @@ export default function App() {
             </div>
           ) : (
             <div className="space-y-4">
-              {aiNews.slice(0, 8).map((n, i) => (
+              {aiNews.slice(0, 6).map((n, i) => (
                 <div key={i} className="p-6 bg-slate-800/50 border border-slate-700/50 rounded-xl hover:border-amber-500/50 hover:bg-slate-800/80 transition-all cursor-pointer">
                   <div className="flex justify-between items-start gap-4">
                     <div className="flex-1">
@@ -254,40 +287,44 @@ export default function App() {
         </div>
       </section>
 
-      <section className="relative py-32 px-6 bg-gradient-to-b from-transparent via-amber-500/5 to-transparent">
+      {/* CTA */}
+      <section className="relative py-32 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-6xl md:text-7xl font-black mb-8">Stop Waiting. Start Building.</h2>
+          <h2 className="text-5xl md:text-6xl font-black mb-8">Let us work together</h2>
 
-          <p className="text-2xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-            You have everything you need. AI tools are free. Knowledge is online. Problems are everywhere. The only thing missing is you saying yes, I will build this.
+          <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Building something complex? Automating enterprise workflows? Exploring agentic AI? Need a consulting partner who understands both the technical and business side? Let us talk.
           </p>
 
-          <div className="bg-slate-800/60 border-2 border-amber-500/40 rounded-3xl p-12 max-w-xl mx-auto mb-12">
-            <p className="text-xl font-bold mb-8">Let us connect. Let us build. Let us make something real.</p>
+          <div className="bg-slate-800/60 border-2 border-amber-500/40 rounded-2xl p-12 max-w-md mx-auto mb-12">
+            <p className="text-sm text-slate-400 mb-6 font-mono">CONTACT</p>
 
             <div className="space-y-4">
-              <a href="mailto:shivamanand1992@gmail.com" className="block px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-xl hover:shadow-2xl hover:shadow-amber-500/50 transition-all text-center">
+              <a href="mailto:shivamanand1992@gmail.com" className="block px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all text-center">
                 <Mail className="w-5 h-5 inline mr-2" />
-                Email Me
+                Email
               </a>
-              <a href="https://wa.me/919810721072" target="_blank" className="block px-8 py-4 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 text-center">
-                💬 Message on WhatsApp
-              </a>
-              <a href="https://linkedin.com/in/shivam-anand-4921aa11b" target="_blank" className="block px-8 py-4 border-2 border-amber-500/50 text-amber-400 font-bold rounded-xl hover:bg-amber-500/10 text-center">
+              <a href="https://linkedin.com/in/shivam-anand-4921aa11b" target="_blank" rel="noopener noreferrer" className="block px-8 py-4 border-2 border-amber-500/50 text-amber-400 font-bold rounded-lg hover:bg-amber-500/10 text-center">
                 <Linkedin className="w-5 h-5 inline mr-2" />
-                Connect on LinkedIn
+                LinkedIn
+              </a>
+              <a href="https://github.com/shivamanand1992-creator" target="_blank" rel="noopener noreferrer" className="block px-8 py-4 border-2 border-slate-600 text-slate-300 font-bold rounded-lg hover:border-slate-500 text-center">
+                <Github className="w-5 h-5 inline mr-2" />
+                GitHub
               </a>
             </div>
-          </div>
 
-          <p className="text-slate-500 text-sm">
-            shivamanand1992@gmail.com · +91 9810 721 072
-          </p>
+            <p className="text-xs text-slate-500 mt-8">
+              shivamanand1992@gmail.com<br />
+              +91 9810 721 072
+            </p>
+          </div>
         </div>
       </section>
 
+      {/* FOOTER */}
       <footer className="py-12 px-6 border-t border-slate-800 bg-black text-center text-slate-500 text-sm">
-        <p>Build with AI. Think big. Ship fast. Never stop learning.</p>
+        <p>Shivam Anand © 2025. Building intelligent systems.</p>
       </footer>
     </div>
   );
