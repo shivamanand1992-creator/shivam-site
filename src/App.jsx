@@ -39,7 +39,7 @@ export default function App() {
       />
 
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
         {/* Background blobs */}
         <div className="absolute inset-0">
           <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
@@ -47,46 +47,46 @@ export default function App() {
           <div className="absolute -bottom-20 right-1/3 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="inline-block mb-6 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-sm font-mono">
-              ✨ From Nothing to Building
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Left side - Text */}
+            <div className="flex flex-col justify-center">
+              <div className="inline-block mb-6 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full text-amber-400 text-sm font-mono w-fit">
+                ✨ From Nothing to Building
+              </div>
+
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight mb-8">
+                You're<br/>
+                <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-red-500 bg-clip-text text-transparent">Losing</span><br/>
+                Opportunity
+              </h1>
+
+              <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-6 leading-relaxed max-w-lg">
+                Right now, somewhere in India, a middle-class kid thinks: "I can't code. I don't have the right background."
+              </p>
+
+              <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed max-w-lg">
+                That was me. Five years ago. I was completely wrong about what was possible.
+              </p>
+
+              <button className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105 w-fit">
+                Read My Story →
+              </button>
             </div>
 
-            <h1 className="text-7xl md:text-8xl font-black leading-tight mb-8">
-              You're<br/>
-              <span className="bg-gradient-to-r from-amber-300 via-orange-400 to-red-500 bg-clip-text text-transparent">Losing</span><br/>
-              Opportunity
-            </h1>
-
-            <p className="text-2xl text-slate-300 mb-6 leading-relaxed max-w-lg">
-              Right now, somewhere in India, a middle-class kid thinks: "I can't code. I have no capital."
-            </p>
-
-            <p className="text-2xl text-slate-300 mb-8 leading-relaxed max-w-lg">
-              That was me. Five years ago. I was completely wrong.
-            </p>
-
-            <button className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105">
-              Read My Story →
-            </button>
-          </div>
-
-          {/* Photo */}
-          <div className="relative hidden md:block">
-            <div className="absolute -inset-4 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 rounded-3xl blur-3xl opacity-30" />
-            <div className="relative bg-black rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl">
-              <img 
-                src="/shivam.jpg" 
-                alt="Shivam" 
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%23333" width="400" height="400"/%3E%3Ctext x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23999" font-size="20"%3EPhoto%3C/text%3E%3C/svg%3E';
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-amber-400 font-bold">Builder • Founder • RPA Architect</p>
+            {/* Right side - Photo */}
+            <div className="relative hidden md:block">
+              <div className="absolute -inset-4 bg-gradient-to-br from-amber-500 via-orange-500 to-red-500 rounded-3xl blur-3xl opacity-30" />
+              <div className="relative bg-black rounded-3xl overflow-hidden border-2 border-amber-500/50 shadow-2xl aspect-square">
+                <img 
+                  src="/shivam.jpg" 
+                  alt="Shivam Anand" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6">
+                  <p className="text-amber-400 font-bold text-sm sm:text-base">Builder • Founder • RPA Architect</p>
+                </div>
               </div>
             </div>
           </div>
@@ -104,10 +104,10 @@ export default function App() {
 
           <div className="space-y-12">
             {[
-              { year: '2015', title: 'Barclays', desc: 'Fresh grad. ₹18K/mo. Learned RPA.', icon: '📍' },
-              { year: '2018-2021', title: 'Enterprise Scale', desc: 'Led 24 devs. 100+ automations.', icon: '📈' },
-              { year: '2023', title: 'The Leap', desc: 'Built Clinoq. Live product.', icon: '🚀' },
-              { year: '2024+', title: 'Building Future', desc: 'Clinoq growing. AI powered.', icon: '✨' }
+              { year: '2015', title: 'Barclays', desc: 'Fresh grad. Learned RPA from ground zero.', icon: '📍' },
+              { year: '2018-2021', title: 'Enterprise Scale', desc: 'Led teams. Automated 100+ business processes.', icon: '📈' },
+              { year: '2023', title: 'The Leap', desc: 'Built Clinoq from scratch. Live product. Real users.', icon: '🚀' },
+              { year: '2024+', title: 'Building Future', desc: 'Clinoq scaling. AI-powered workflows. New vision.', icon: '✨' }
             ].map((m, i) => (
               <div key={i} className="group relative">
                 <div className="absolute -left-8 w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-xl border-4 border-black group-hover:scale-110 transition-transform">
@@ -210,7 +210,7 @@ export default function App() {
           <h2 className="text-7xl font-black mb-8">You Can Do This Too</h2>
 
           <p className="text-2xl text-slate-300 mb-6 max-w-2xl mx-auto">
-            I earned ₹8,000/month. Zero coding. Zero capital. <span className="text-amber-400 font-bold">AI changed everything.</span>
+            I had no connections. No coding background. No "right" credentials. <span className="text-amber-400 font-bold">AI changed everything.</span>
           </p>
 
           <div className="bg-slate-800/60 border-2 border-amber-500/40 rounded-3xl p-12 max-w-xl mx-auto">
