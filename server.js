@@ -16,79 +16,155 @@ app.use(express.json());
 // Serve static React build
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// AI News API - Real-time updates from multiple sources
+// AI News API - Curated real-time AI updates
 app.get('/api/ai-news', async (req, res) => {
   try {
-    const stories = [];
+    let stories = [];
     
-    // Try Hacker News for AI/ML stories
+    // Try Hacker News for AI/ML stories with timeout
     try {
-      const hackRes = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json');
-      const storyIds = await hackRes.json();
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
       
-      for (let i = 0; i < Math.min(20, storyIds.length) && stories.length < 4; i++) {
-        const storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${storyIds[i]}.json`);
-        const story = await storyRes.json();
+      const hackRes = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json', { 
+        signal: controller.signal 
+      });
+      clearTimeout(timeout);
+      
+      if (hackRes.ok) {
+        const storyIds = await hackRes.json();
         
-        const title = (story.title || '').toLowerCase();
-        const isAIRelated = title.includes('ai') || title.includes('ml') || title.includes('llm') || 
-                           title.includes('gpt') || title.includes('claude') || title.includes('neural') ||
-                           title.includes('model') || title.includes('agent') || title.includes('transformer');
-        
-        if (story.title && isAIRelated) {
-          stories.push({
-            title: story.title,
-            source: 'Hacker News',
-            category: 'Trending',
-            score: story.score || 0,
-            link: story.url || `https://news.ycombinator.com/item?id=${story.id}`
-          });
+        for (let i = 0; i < Math.min(30, storyIds.length) && stories.length < 6; i++) {
+          try {
+            const storyRes = await fetch(`https://hacker-news.firebaseio.com/v0/item/${storyIds[i]}.json`, {
+              signal: controller.signal
+            });
+            
+            if (storyRes.ok) {
+              const story = await storyRes.json();
+              
+              if (!story.title) continue;
+              
+              const title = story.title.toLowerCase();
+              const isAIRelated = title.includes('ai') || title.includes('ml') || title.includes('llm') || 
+                                 title.includes('gpt') || title.includes('claude') || title.includes('neural') ||
+                                 title.includes('model') || title.includes('agent') || title.includes('transformer') ||
+                                 title.includes('deep learning') || title.includes('machine learning');
+              
+              if (isAIRelated) {
+                stories.push({
+                  title: story.title,
+                  source: 'Hacker News',
+                  category: 'Trending',
+                  score: story.score || 0,
+                  link: story.url || `https://news.ycombinator.com/item?id=${story.id}`
+                });
+              }
+            }
+          } catch (itemError) {
+            // Skip individual story on error
+            continue;
+          }
         }
       }
-    } catch (e) {
-      console.log('Hacker News fetch failed');
+    } catch (hackError) {
+      console.log('Hacker News fetch failed, using fallback');
     }
     
-    // Fallback curated AI news if not enough from HN
-    if (stories.length < 4) {
-      stories.push(
-        {
-          title: 'Latest Advances in Agentic AI Systems',
-          source: 'AI Research',
-          category: 'Agents',
-          score: 150,
-          link: '#'
-        },
-        {
-          title: 'Open Source LLMs Compete with Proprietary Models',
-          source: 'Tech News',
-          category: 'Open Source',
-          score: 120,
-          link: '#'
-        },
-        {
-          title: 'Enterprise AI Adoption Accelerates',
-          source: 'Industry Report',
-          category: 'Enterprise',
-          score: 110,
-          link: '#'
-        },
-        {
-          title: 'Multimodal Models Transform AI Capabilities',
-          source: 'Research',
-          category: 'Models',
-          score: 100,
-          link: '#'
+    // Always ensure we have curated fallback content
+    const curatedNews = [
+      {
+        title: 'Agentic AI Systems Transforming Enterprise Automation',
+        source: 'AI Architecture Trends',
+        category: 'Agents',
+        score: 180,
+        link: '#'
+      },
+      {
+        title: 'Open Source LLMs Closing the Gap with Proprietary Models',
+        source: 'Model Development',
+        category: 'Open Source',
+        score: 160,
+        link: '#'
+      },
+      {
+        title: 'Multimodal AI: Vision + Language Models in Production',
+        source: 'Tech Research',
+        category: 'Models',
+        score: 140,
+        link: '#'
+      },
+      {
+        title: 'Enterprise AI Adoption Accelerates Across Industries',
+        source: 'Industry Analysis',
+        category: 'Enterprise',
+        score: 130,
+        link: '#'
+      },
+      {
+        title: 'Reasoning AI and Chain-of-Thought Systems Advance',
+        source: 'Research Labs',
+        category: 'Reasoning',
+        score: 120,
+        link: '#'
+      },
+      {
+        title: 'Document Processing with Vision Models and LLMs',
+        source: 'Automation Tech',
+        category: 'AI Tools',
+        score: 110,
+        link: '#'
+      },
+      {
+        title: 'Low-Code AI Platforms Enable Faster Deployment',
+        source: 'Developer Tools',
+        category: 'No-Code',
+        score: 100,
+        link: '#'
+      },
+      {
+        title: 'AI Safety and Alignment: New Frameworks Emerging',
+        source: 'Safety Research',
+        category: 'Safety',
+        score: 90,
+        link: '#'
+      }
+    ];
+    
+    // Merge real stories with curated fallback, removing duplicates
+    const mergedStories = [];
+    const seen = new Set();
+    
+    // Add real stories first
+    stories.forEach(story => {
+      const key = story.title.toLowerCase();
+      if (!seen.has(key)) {
+        mergedStories.push(story);
+        seen.add(key);
+      }
+    });
+    
+    // Fill remaining slots with curated content
+    curatedNews.forEach(story => {
+      if (mergedStories.length < 8) {
+        const key = story.title.toLowerCase();
+        if (!seen.has(key)) {
+          mergedStories.push(story);
+          seen.add(key);
         }
-      );
-    }
+      }
+    });
     
-    res.json(stories.slice(0, 8));
+    console.log(`Returning ${mergedStories.length} AI news stories (${stories.length} real, ${mergedStories.length - stories.length} curated)`);
+    res.json(mergedStories.slice(0, 8));
   } catch (error) {
     console.error('AI News API error:', error);
+    // Return curated fallback on any error
     res.json([
-      { title: 'AI News Updates', source: 'Multiple Sources', category: 'Real-time Feed', score: 100, link: '#' },
-      { title: 'Latest in Machine Learning', source: 'Tech Community', category: 'ML', score: 95, link: '#' }
+      { title: 'Agentic AI is Reshaping Automation', source: 'AI Trends', category: 'Featured', score: 150, link: '#' },
+      { title: 'Latest Advances in Large Language Models', source: 'Tech News', category: 'LLM', score: 140, link: '#' },
+      { title: 'Open Source Models Drive Innovation', source: 'Community', category: 'Open Source', score: 130, link: '#' },
+      { title: 'AI in Enterprise: Production Success Stories', source: 'Business', category: 'Enterprise', score: 120, link: '#' }
     ]);
   }
 });
