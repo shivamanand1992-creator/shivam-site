@@ -40,33 +40,33 @@ export default function App() {
       <div className="fixed top-0 left-0 h-1 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 z-50" style={{ width: `${scrollProgress}%` }} />
 
       {/* HERO / HEADER */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-20">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 pb-16 sm:pt-20 sm:pb-20">
         <div className="absolute inset-0">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute top-1/3 -left-40 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute -bottom-20 right-1/3 w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          <div className="absolute -top-40 -right-40 w-72 sm:w-96 h-72 sm:h-96 bg-amber-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-1/3 -left-40 w-72 sm:w-96 h-72 sm:h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute -bottom-20 right-1/3 w-72 sm:w-96 h-72 sm:h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
             <div>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-black leading-tight mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-4 sm:mb-6">
                 Shivam Anand
               </h1>
               
-              <p className="text-2xl md:text-3xl text-amber-400 font-bold mb-6">
+              <p className="text-xl sm:text-2xl md:text-3xl text-amber-400 font-bold mb-4 sm:mb-6">
                 RPA Architect & AI Systems Builder
               </p>
 
-              <p className="text-lg md:text-xl text-slate-300 mb-6 leading-relaxed max-w-lg">
+              <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-4 sm:mb-6 leading-relaxed">
                 Building intelligent automation systems. Architecting agentic AI workflows. Turning complex problems into elegant automation solutions.
               </p>
 
-              <p className="text-base text-slate-400 mb-8 leading-relaxed max-w-lg">
+              <p className="text-sm sm:text-base text-slate-400 mb-6 sm:mb-8 leading-relaxed">
                 Currently: Leading enterprise RPA + AI projects. Building Clinoq. Playing with agentic systems and intelligent document processing.
               </p>
 
-              <button onClick={scrollToWork} className="px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105">
+              <button onClick={scrollToWork} className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold rounded-lg hover:shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105 text-sm sm:text-base">
                 See My Work →
               </button>
             </div>
